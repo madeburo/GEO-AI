@@ -1,0 +1,269 @@
+# GEO AI — Roadmap
+
+**GEO AI – AI Search Optimization**
+
+Make any site visible to ChatGPT, Claude, Perplexity, Gemini, Grok & other AI search engines.
+
+---
+
+## Ecosystem Overview
+
+| Package | Stack | Status |
+|---------|-------|--------|
+| [GEO AI Woo](https://github.com/madeburo/GEO-AI-Woo) | WordPress / PHP | ✅ Released |
+| [GEO AI Shopify](https://github.com/madeburo/GEO-AI-Shopify) | Shopify / TypeScript | ✅ Released |
+| [geo-ai-core](https://www.npmjs.com/package/geo-ai-core) | TypeScript (framework-agnostic) | ✅ Released |
+| [geo-ai-next](https://www.npmjs.com/package/geo-ai-next) | Next.js | ✅ Released |
+
+---
+
+## Phase 1: Core Packages ✅
+
+**geo-ai-core** — Framework-agnostic engine
+
+- llms.txt / llms-full.txt generation
+- 16 AI crawler registry and bot rules engine
+- Provider interface for any CMS/API/static data
+- TTL caching (memory + file adapters)
+- Crawl tracking with GDPR-compliant IP anonymization
+- AI description generation via Claude / OpenAI (opt-in)
+- SEO signals: meta tags, Link header, JSON-LD
+- AES-256-GCM API key encryption
+
+**geo-ai-next** — Next.js wrapper
+
+- Middleware intercepting `/llms.txt` and `/llms-full.txt`
+- App Router route handler
+- Zero-config setup: `npm install geo-ai-next` + one config object
+
+---
+
+## Phase 2: Documentation Site
+
+**docs.geoai.run**
+
+Developer documentation covering all platforms:
+
+| Section | Content |
+|---------|---------|
+| `/concepts` | What is GEO, AI Search vs SEO, how AI crawlers work, llms.txt explained |
+| `/nextjs` | geo-ai-next setup, middleware config, route handlers, examples |
+| `/node` | geo-ai-core standalone usage, custom providers, API reference |
+| `/wordpress` | GEO AI Woo installation, settings, WP-CLI, hooks |
+| `/shopify` | GEO AI Shopify setup, metafields, theme extension, API |
+
+### `/concepts` — Educational Content
+
+| Page | Content |
+|------|---------|
+| What is GEO | Generative Engine Optimization explained — why traditional SEO isn't enough for AI search |
+| AI Search vs SEO | Side-by-side comparison — how Google indexes vs how ChatGPT/Perplexity discover content |
+| How AI Crawlers Work | GPTBot, ClaudeBot, PerplexityBot — what they look for, how they parse, what they ignore |
+| llms.txt Explained | The standard, the format, why it matters — robots.txt told crawlers what to skip, llms.txt tells AI what to read |
+
+**Why `/concepts` matters:** educational content ranks for searches like "what is GEO", "AI SEO", "llms.txt" — drives organic traffic from developers and merchants who don't yet know GEO AI exists.
+
+---
+
+## Phase 3: GEO Specification
+
+**GEO-SPEC.md** — Open specification for AI search optimization signals.
+
+A reference document defining the full stack of signals that make a website AI-discoverable:
+
+| Signal | Description |
+|--------|-------------|
+| `llms.txt` | Structured Markdown index at site root for AI crawlers |
+| `llms-full.txt` | Complete content version with product data, pricing, availability |
+| AI Metadata | `<meta name="llms">`, `<meta name="ai-description">` tags |
+| Crawler Rules | Per-bot robots.txt directives for 16+ AI crawlers |
+| Structured Signals | JSON-LD Schema.org markup (Product, Article, WebSite with ReadAction) |
+| Link Header | `Link: <url>; rel="ai-content-index"` HTTP header |
+
+**Why a specification:**
+- Positions GEO AI as the standard, not just a tool
+- Other developers can build compatible implementations
+- Referenced by docs, blog posts, conference talks
+- Lives in the GEO-AI monorepo as the source of truth
+
+---
+
+## Phase 4: GEO Analyzer
+
+**geoai.run/analyze**
+
+Free public tool — enter any URL, get an AI visibility audit.
+
+### How it works
+
+1. User enters website URL
+2. Analyzer checks: llms.txt presence, AI metadata, crawler rules, Schema.org markup, content structure
+3. Returns AI Visibility Score (0–100) with actionable breakdown
+
+### Example output
+
+```
+AI Visibility Score: 72/100
+
+✓ llms.txt detected at /llms.txt
+✓ AI meta tags present
+✗ Crawler rules missing — no bot-specific robots.txt directives
+✗ Schema.org incomplete — Product markup missing price and availability
+✗ No llms-full.txt found
+
+Recommendations:
+→ Add crawler rules for GPTBot, ClaudeBot, PerplexityBot
+→ Add price and availability to Product schema
+→ Generate llms-full.txt for comprehensive AI indexing
+```
+
+### AI Crawler Simulator
+
+Simulate how specific AI bots see your site:
+
+```
+Simulate GPTBot crawl     → shows what ChatGPT can extract
+Simulate ClaudeBot crawl  → shows what Claude can extract
+Simulate PerplexityBot    → shows what Perplexity can extract
+```
+
+Each simulation shows: what the bot finds, what it misses, and a **"Fix with GEO AI"** button linking directly to the right package (WordPress plugin, Shopify app, or npm package).
+
+### AI Citation Readiness
+
+Beyond crawlability — check if your content is structured for AI to quote and cite:
+
+```
+AI Citation Readiness: 3/5
+
+✓ Clear headings with question-answer structure
+✓ Concise paragraphs (avg 45 words — ideal for LLM extraction)
+✗ No FAQ schema detected
+✗ Long paragraphs on 4 pages (200+ words — hard for LLMs to quote)
+✗ Key definitions not marked up (no <dfn>, no glossary structure)
+
+Recommendations:
+→ Add FAQ schema to top 10 pages
+→ Break long paragraphs into quotable chunks (50-80 words)
+→ Structure answers as direct statements LLMs can cite
+```
+
+**Why this matters:** llms.txt makes your site discoverable, but citation readiness makes your content quotable. Especially valuable for blogs, knowledge bases, and documentation sites where being cited by ChatGPT/Perplexity drives authority and traffic.
+
+### Why Analyzer is a growth engine
+
+Tools like Ahrefs Site Audit, Google PageSpeed Insights, and SEO audit tools generate massive organic traffic because people search for solutions to specific problems. The same pattern applies here:
+
+| Search Query | Lands On |
+|-------------|----------|
+| "AI SEO check" | geoai.run/analyze |
+| "AI visibility score" | geoai.run/analyze |
+| "llms.txt checker" | geoai.run/analyze |
+| "is my site visible to ChatGPT" | geoai.run/analyze |
+| "check AI crawlers" | geoai.run/analyze |
+
+**Conversion funnel:**
+1. User runs analysis → sees score and issues
+2. Clicks "Fix with GEO AI" → lands on docs or package
+3. Installs plugin/package → reruns analysis → sees improved score
+4. Shares result → viral loop
+
+---
+
+## Phase 5: GEO AI CLI
+
+**geo-ai-cli** — Command-line tool for developers.
+
+```bash
+# Initialize GEO AI in any project
+npx geo-ai init
+
+# Analyze any website from terminal
+npx geo-ai analyze https://example.com
+
+# Generate llms.txt from local content
+npx geo-ai generate --source ./content --output ./public/llms.txt
+
+# Check AI crawler access
+npx geo-ai crawlers https://example.com
+```
+
+### `geo-ai init`
+
+Interactive setup wizard:
+
+```
+? Select your framework: (Next.js / NestJS / Node.js / Static)
+? Site name: My Store
+? Site URL: https://mystore.com
+? Enable AI crawl tracking? (Y/n)
+
+✓ Created geo-ai.config.ts
+✓ Updated middleware.ts
+✓ Ready — run `npm run dev` and visit /llms.txt
+```
+
+### `geo-ai analyze`
+
+Same engine as the web analyzer, but from the terminal:
+
+```
+$ npx geo-ai analyze https://example.com
+
+AI Visibility Score: 45/100
+
+✓ Site accessible
+✗ No llms.txt found
+✗ No AI meta tags
+✗ No crawler rules in robots.txt
+✗ Schema.org missing
+
+Run `npx geo-ai init` to fix these issues.
+```
+
+**Why CLI matters:**
+- Developers prefer terminal over web tools
+- `npx geo-ai analyze` is shareable — one command in any README or blog post
+- Drives npm downloads → visible on npm trending
+
+---
+
+## Phase 6: GitHub Discovery
+
+**GitHub topics for all repos:**
+
+```
+ai-seo
+llms-txt
+ai-search
+generative-engine-optimization
+geo-ai
+ai-visibility
+ai-crawlers
+```
+
+**Why:**
+- GitHub recommends repos based on topics to users exploring similar projects
+- Topics like `llms-txt` and `generative-engine-optimization` have near-zero competition
+- Users searching these topics find GEO AI as the primary ecosystem
+
+**Apply to:**
+- madeburo/GEO-AI-Woo
+- madeburo/GEO-AI-Shopify
+- madeburo/GEO-AI (core + next monorepo)
+
+---
+
+## Future Phases
+
+| Phase | Package | Description |
+|-------|---------|-------------|
+| 7 | geo-ai-nestjs | NestJS module — interceptor + decorator pattern |
+| 8 | geo-ai-laravel | Laravel package — middleware + Artisan commands |
+| 9 | geo-ai-nuxt | Nuxt.js integration — server middleware + composables |
+| 10 | geo-ai-astro | Astro integration — endpoint + middleware |
+| 11 | GEO AI Analytics | Dashboard for tracking AI search referrals and citations |
+
+---
+
+*Built by [Made Büro](https://madeburo.com)*
