@@ -3,7 +3,10 @@ import type { GeoAIConfig, GeoAIInstance } from 'geo-ai-core';
 
 // ── Config ──────────────────────────────────────────────────────────
 
-export interface LlmsHandlerConfig extends GeoAIConfig {}
+export interface LlmsHandlerConfig extends GeoAIConfig {
+  /** Cache-Control max-age in seconds for llms.txt responses. Default: 3600 */
+  cacheMaxAge?: number;
+}
 
 // ── Route Handler factory ───────────────────────────────────────────
 
@@ -20,6 +23,7 @@ export function createLlmsHandler(config: LlmsHandlerConfig): {
   GET: (request: Request) => Promise<Response>;
 } {
   const core: GeoAIInstance = createGeoAI(config);
+  const maxAge = config.cacheMaxAge ?? 3600;
 
   return {
     async GET(request: Request): Promise<Response> {
@@ -38,7 +42,7 @@ export function createLlmsHandler(config: LlmsHandlerConfig): {
           status: 200,
           headers: {
             'Content-Type': 'text/plain; charset=utf-8',
-            'Cache-Control': 'public, max-age=3600',
+            'Cache-Control': `public, max-age=${maxAge}`,
           },
         });
       } catch {

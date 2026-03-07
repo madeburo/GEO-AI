@@ -113,7 +113,7 @@ export interface AiError {
 export interface AiBulkConfig {
   batchSize?: number; // default 5
   maxItems?: number; // default 50
-  onProgress?: (completed: number, total: number, current: Resource) => void;
+  onProgress?: (completed: number, total: number, current: AiContext) => void;
 }
 
 export interface AiContext {

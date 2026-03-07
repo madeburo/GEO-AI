@@ -2,6 +2,24 @@
 
 All notable changes to GEO AI Core will be documented in this file.
 
+## [0.1.1] - 2026-03-07
+
+### Fixed
+
+#### Infrastructure
+- `tsc --build` now works from root — added `tsconfig.json` with project references and `composite: true` in package tsconfigs
+
+#### geo-ai-core
+- `MemoryCrawlStore` — added `maxEntries` cap (default 10 000) with automatic eviction of oldest 20% on overflow, preventing unbounded memory growth
+- `MemoryCacheAdapter` — added `maxEntries` cap (default 1 000) with proactive expired entry eviction on `set()`, preventing stale entries from accumulating indefinitely
+- `getPriceRange` — replaced `Math.min(...spread)` / `Math.max(...spread)` with iterative loop, eliminating potential stack overflow on large variant arrays
+- `bulkGenerate` — batches now process concurrently via `Promise.allSettled()` instead of sequentially, making `batchSize` control actual parallelism
+- `AiBulkConfig.onProgress` — callback type changed from `Resource` to `AiContext`, removing unsafe `as unknown as Resource` cast
+
+#### geo-ai-next
+- `geoAIMiddleware` — added `Cache-Control: public, max-age=3600` header to llms.txt responses, consistent with `createLlmsHandler`
+- Both `GeoAIMiddlewareConfig` and `LlmsHandlerConfig` now accept optional `cacheMaxAge` (seconds, default 3600) for configurable Cache-Control
+
 ## [0.1.0] - 2026-03-06
 
 ### Added

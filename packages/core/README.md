@@ -89,7 +89,7 @@ const description = await ai.generate({
 });
 ```
 
-Bulk generation with progress:
+Bulk generation with progress (concurrent within each batch):
 
 ```typescript
 const results = await ai.bulkGenerate(items, {

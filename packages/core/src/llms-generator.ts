@@ -21,8 +21,14 @@ export function getPriceRange(variants: ProductResource['variants']): string {
   if (!variants || variants.length === 0) return '';
   const prices = variants.map((v) => parseFloat(v.price)).filter((p) => !isNaN(p));
   if (prices.length === 0) return '';
-  const min = Math.min(...prices);
-  const max = Math.max(...prices);
+
+  let min = prices[0];
+  let max = prices[0];
+  for (let i = 1; i < prices.length; i++) {
+    if (prices[i] < min) min = prices[i];
+    if (prices[i] > max) max = prices[i];
+  }
+
   if (min === max) return min.toFixed(2);
   return `${min.toFixed(2)} – ${max.toFixed(2)}`;
 }

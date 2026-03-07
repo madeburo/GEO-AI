@@ -1,6 +1,7 @@
 {
   "name": "geo-ai-core",
   "version": "0.1.0",
+  "license": "GPL-2.0",
   "type": "module",
   "exports": {
     ".": {
@@ -17,6 +18,29 @@
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "keywords": [
+    "geo",
+    "llms",
+    "llms-txt",
+    "llms.txt",
+    "ai",
+    "generative-engine-optimization",
+    "chatgpt",
+    "claude",
+    "grok",
+    "perplexity",
+    "robots-txt",
+    "crawler",
+    "bot",
+    "ai-search",
+    "content-optimization",
+    "structured-data",
+    "json-ld",
+    "schema-org",
+    "nodejs",
+    "node.js",
+    "typescript"
+  ],
   "files": [
     "dist"
   ],

@@ -27,6 +27,7 @@ export default geoAIMiddleware({
   siteUrl: 'https://example.com',
   provider: new MyProvider(),
   cache: '24h',
+  cacheMaxAge: 3600,    // Cache-Control max-age in seconds (default 3600)
   injectLinkHeader: true, // adds Link header to all responses
 });
 
@@ -47,6 +48,7 @@ export const { GET } = createLlmsHandler({
   siteName: 'My Site',
   siteUrl: 'https://example.com',
   provider: new MyProvider(),
+  cacheMaxAge: 7200, // optional, default 3600
 });
 ```
 

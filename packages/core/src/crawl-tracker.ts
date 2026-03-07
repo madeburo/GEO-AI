@@ -80,12 +80,26 @@ export class CrawlTracker {
  * In-memory implementation of CrawlStore.
  * Suitable for development, testing, and serverless environments
  * where persistence across restarts is not required.
+ *
+ * @param maxEntries — upper bound on stored entries (default 10 000).
+ *   When exceeded, the oldest 20 % are evicted automatically on `log()`.
  */
 export class MemoryCrawlStore implements CrawlStore {
   private entries: CrawlEntry[] = [];
+  private readonly maxEntries: number;
+
+  constructor(maxEntries = 10_000) {
+    this.maxEntries = maxEntries;
+  }
 
   async log(entry: CrawlEntry): Promise<void> {
     this.entries.push(entry);
+
+    if (this.entries.length > this.maxEntries) {
+      // Drop oldest 20 % to avoid trimming on every single call
+      const drop = Math.ceil(this.maxEntries * 0.2);
+      this.entries = this.entries.slice(drop);
+    }
   }
 
   async getActivity(options?: { days?: number }): Promise<CrawlActivity[]> {

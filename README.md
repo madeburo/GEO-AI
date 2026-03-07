@@ -47,18 +47,18 @@ Built-in registry of 16+ AI crawlers with per-bot allow/disallow rules and robot
 ### TTL Caching
 
 Pluggable cache via `CacheAdapter` interface with built-in implementations:
-- `MemoryCacheAdapter` — In-memory with TTL check on read
+- `MemoryCacheAdapter` — In-memory with TTL and automatic expired entry eviction (configurable `maxEntries`, default 1 000)
 - `FileCacheAdapter` — File-based with JSON metadata
 
 ### Crawl Tracking
 
-GDPR-compliant bot visit logging with SHA-256 IP anonymization (Web Crypto API, Edge Runtime compatible). Pluggable storage via `CrawlStore` interface with built-in `MemoryCrawlStore`.
+GDPR-compliant bot visit logging with SHA-256 IP anonymization (Web Crypto API, Edge Runtime compatible). Pluggable storage via `CrawlStore` interface with built-in `MemoryCrawlStore` (configurable `maxEntries`, default 10 000).
 
 ### AI Description Generation
 
 Optional module (`geo-ai-core/ai`) for generating AI-optimized descriptions via Claude or OpenAI APIs:
 - Customizable prompt templates with `{title}`, `{content}`, `{type}`, `{price}`, `{category}` placeholders
-- Bulk generation (up to 50 items, batched by 5) with progress callback
+- Bulk generation (up to 50 items, batched by 5 concurrently) with progress callback
 - Sliding window rate limiter (default 10 req/min)
 - Typed error classification (auth, rate limit, server, network)
 
@@ -162,6 +162,7 @@ export const { GET } = createLlmsHandler({
   siteName: 'My Site',
   siteUrl: 'https://example.com',
   provider: new MyProvider(),
+  cacheMaxAge: 3600, // seconds, default 3600
 });
 ### AI Description Generation
 

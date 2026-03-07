@@ -8,6 +8,8 @@ import type { GeoAIConfig, GeoAIInstance } from 'geo-ai-core';
 export interface GeoAIMiddlewareConfig extends GeoAIConfig {
   /** Inject Link header pointing to llms.txt on non-llms responses. Default: false */
   injectLinkHeader?: boolean;
+  /** Cache-Control max-age in seconds for llms.txt responses. Default: 3600 */
+  cacheMaxAge?: number;
 }
 
 // ── Middleware factory ───────────────────────────────────────────────
@@ -22,6 +24,7 @@ export function geoAIMiddleware(
 ): (request: NextRequest) => Promise<NextResponse> {
   const core: GeoAIInstance = createGeoAI(config);
   const injectLink = config.injectLinkHeader ?? false;
+  const maxAge = config.cacheMaxAge ?? 3600;
 
   return async (request: NextRequest): Promise<NextResponse> => {
     const { pathname } = request.nextUrl;
@@ -38,7 +41,10 @@ export function geoAIMiddleware(
 
         return new NextResponse(content, {
           status: 200,
-          headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+          headers: {
+            'Content-Type': 'text/plain; charset=utf-8',
+            'Cache-Control': `public, max-age=${maxAge}`,
+          },
         });
       } catch {
         return new NextResponse('Internal Server Error', {

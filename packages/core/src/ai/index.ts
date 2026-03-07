@@ -14,7 +14,6 @@ import type {
   AiError,
   AiGeneratorConfig,
   AiProvider,
-  Resource,
 } from '../types';
 
 import {
@@ -275,36 +274,48 @@ export class AiGenerator {
    * Bulk-generate AI descriptions for multiple contexts.
    * Processes in batches with progress callback.
    */
-  async bulkGenerate(
-    contexts: AiContext[],
-    options?: AiBulkConfig,
-  ): Promise<Array<{ context: AiContext; result: string | null; error?: AiError }>> {
-    const batchSize = options?.batchSize ?? DEFAULT_BATCH_SIZE;
-    const maxItems = options?.maxItems ?? DEFAULT_MAX_ITEMS;
-    const items = contexts.slice(0, maxItems);
-    const results: Array<{ context: AiContext; result: string | null; error?: AiError }> = [];
+  /**
+     * Bulk-generate AI descriptions for multiple contexts.
+     * Processes items concurrently within each batch (Promise.allSettled),
+     * then moves to the next batch. Progress callback fires per item.
+     */
+    async bulkGenerate(
+      contexts: AiContext[],
+      options?: AiBulkConfig,
+    ): Promise<Array<{ context: AiContext; result: string | null; error?: AiError }>> {
+      const batchSize = options?.batchSize ?? DEFAULT_BATCH_SIZE;
+      const maxItems = options?.maxItems ?? DEFAULT_MAX_ITEMS;
+      const items = contexts.slice(0, maxItems);
+      const results: Array<{ context: AiContext; result: string | null; error?: AiError }> = [];
 
-    for (let i = 0; i < items.length; i += batchSize) {
-      const batch = items.slice(i, i + batchSize);
+      for (let i = 0; i < items.length; i += batchSize) {
+        const batch = items.slice(i, i + batchSize);
 
-      for (const ctx of batch) {
-        try {
-          const result = await this.generate(ctx);
-          results.push({ context: ctx, result });
-        } catch (err) {
-          const aiErr: AiError =
-            err instanceof AiProviderError
-              ? { type: err.type, message: err.message, statusCode: err.statusCode }
-              : { type: 'unknown', message: String(err) };
-          results.push({ context: ctx, result: null, error: aiErr });
-        }
+        const settled = await Promise.allSettled(
+          batch.map((ctx) => this.generate(ctx)),
+        );
 
-        if (options?.onProgress) {
-          options.onProgress(results.length, items.length, ctx as unknown as Resource);
+        for (let j = 0; j < batch.length; j++) {
+          const ctx = batch[j];
+          const outcome = settled[j];
+
+          if (outcome.status === 'fulfilled') {
+            results.push({ context: ctx, result: outcome.value });
+          } else {
+            const err = outcome.reason;
+            const aiErr: AiError =
+              err instanceof AiProviderError
+                ? { type: err.type, message: err.message, statusCode: err.statusCode }
+                : { type: 'unknown', message: String(err) };
+            results.push({ context: ctx, result: null, error: aiErr });
+          }
+
+          if (options?.onProgress) {
+            options.onProgress(results.length, items.length, ctx);
+          }
         }
       }
-    }
 
-    return results;
-  }
+      return results;
+    }
 }

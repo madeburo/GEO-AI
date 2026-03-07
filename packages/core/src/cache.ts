@@ -5,11 +5,18 @@ import type { CacheAdapter } from './types';
 // ── MemoryCacheAdapter ──────────────────────────────────────────────
 
 /**
- * In-memory cache with TTL checking on read.
- * Expired entries are lazily removed when accessed.
+ * In-memory cache with TTL.
+ *
+ * Expired entries are lazily removed on read and proactively purged
+ * when the store exceeds `maxEntries` (default 1 000).
  */
 export class MemoryCacheAdapter implements CacheAdapter {
   private store = new Map<string, { value: string; expiresAt: number }>();
+  private readonly maxEntries: number;
+
+  constructor(maxEntries = 1_000) {
+    this.maxEntries = maxEntries;
+  }
 
   async get(key: string): Promise<string | null> {
     const entry = this.store.get(key);
@@ -28,6 +35,10 @@ export class MemoryCacheAdapter implements CacheAdapter {
       value,
       expiresAt: Date.now() + ttlSeconds * 1000,
     });
+
+    if (this.store.size > this.maxEntries) {
+      this.evictExpired();
+    }
   }
 
   async invalidate(key?: string): Promise<void> {
@@ -35,6 +46,16 @@ export class MemoryCacheAdapter implements CacheAdapter {
       this.store.delete(key);
     } else {
       this.store.clear();
+    }
+  }
+
+  /** Remove all entries whose TTL has elapsed. */
+  private evictExpired(): void {
+    const now = Date.now();
+    for (const [k, v] of this.store) {
+      if (now >= v.expiresAt) {
+        this.store.delete(k);
+      }
     }
   }
 }
