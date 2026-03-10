@@ -1,6 +1,6 @@
 {
   "name": "geo-ai-next",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "license": "GPL-2.0",
   "homepage": "https://www.geoai.run",
   "repository": {
@@ -53,7 +53,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "geo-ai-core": "*"
+    "geo-ai-core": "^0.2.0"
   },
   "engines": {
     "node": ">=20"
