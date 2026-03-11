@@ -1,25 +1,30 @@
 {
-  "name": "geo-ai-next",
-  "version": "0.2.1",
-  "description": "Next.js integration for GEO AI — middleware, route handler and static file generation for llms.txt / llms-full.txt",
+  "name": "geo-ai-cli",
+  "version": "0.1.0",
+  "description": "CLI for generating and validating llms.txt / llms-full.txt — AI Search Optimization (GEO) for any Node.js project",
   "license": "GPL-2.0",
   "homepage": "https://www.geoai.run",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/madeburo/GEO-AI.git",
-    "directory": "packages/next"
+    "directory": "packages/cli"
   },
   "type": "module",
+  "bin": {
+    "geo-ai": "dist/cli.mjs"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
+      "import": "./dist/index.mjs"
     }
   },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md"
+  ],
   "keywords": [
     "geo",
     "llms",
@@ -28,9 +33,7 @@
     "ai",
     "ai-search-optimization",
     "geoai",
-    "nextjs",
-    "next",
-    "middleware",
+    "cli",
     "chatgpt",
     "claude",
     "grok",
@@ -38,19 +41,11 @@
     "robots-txt",
     "crawler",
     "ai-search",
-    "next.js",
+    "content-optimization",
     "nodejs",
     "node.js",
     "typescript"
   ],
-  "files": [
-    "dist",
-    "README.md",
-    "CHANGELOG.md"
-  ],
-  "bin": {
-    "geo-ai-generate": "dist/cli.mjs"
-  },
   "scripts": {
     "build": "tsup",
     "typecheck": "tsc --noEmit"
@@ -61,11 +56,7 @@
   "engines": {
     "node": ">=20"
   },
-  "peerDependencies": {
-    "next": ">=16"
-  },
   "devDependencies": {
-    "next": "^16.1.6",
     "tsup": "^8.0.0",
     "typescript": "^5.5.0"
   }

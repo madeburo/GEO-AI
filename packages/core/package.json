@@ -1,11 +1,12 @@
 {
   "name": "geo-ai-core",
-  "version": "0.2.0",
+  "version": "0.2.1",
+  "description": "Zero-dependency TypeScript engine for AI Search Optimization (GEO) — generates llms.txt, manages AI crawlers, SEO signals, caching and more",
   "license": "GPL-2.0",
   "homepage": "https://www.geoai.run",
   "repository": {
     "type": "git",
-    "url": "https://github.com/madeburo/GEO-AI",
+    "url": "git+https://github.com/madeburo/GEO-AI.git",
     "directory": "packages/core"
   },
   "type": "module",
@@ -49,7 +50,9 @@
     "typescript"
   ],
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "build": "tsup",

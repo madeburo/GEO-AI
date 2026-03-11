@@ -14,10 +14,12 @@ A zero-dependency TypeScript engine that optimizes websites for AI search engine
 
 - **geo-ai-core** – Universal engine (llms.txt generation, bot rules, crawl tracking, caching, encryption, SEO signals, AI descriptions)
 - **geo-ai-next** – Next.js wrapper: static file generation, middleware + route handler
+- **geo-ai-cli** – CLI tool: `geo-ai init / generate / validate / inspect` for any Node.js project
 
 > **Not sure what's what?**
 > - `geo-ai-core` — open-source npm library, zero dependencies, works anywhere Node.js runs
 > - `geo-ai-next` — open-source npm library, Next.js integration built on top of `geo-ai-core`
+> - `geo-ai-cli` — open-source npm CLI, `geo-ai init / generate / validate / inspect` for any project
 > - [geoai.run](https://www.geoai.run) — the analyzer, docs, and llms.txt specification site
 
 Try the analyzer at [geoai.run/analyze](https://www.geoai.run/analyze)
@@ -47,8 +49,8 @@ GEO AI provides infrastructure for **AI Search Optimization**:
         WordPress       Shopify        Node.js
             │              │              │
        GEO-AI-Woo   GEO-AI-Shopify   geo-ai-core
-            │                             │
-       WooCommerce                    geo-ai-next
+            │                          │     │
+       WooCommerce               geo-ai-next  geo-ai-cli
 ```
 
 ### Ecosystem
@@ -59,6 +61,7 @@ GEO AI provides infrastructure for **AI Search Optimization**:
 | Shopify | `geo-ai-shopify` |
 | Next.js | `geo-ai-next` |
 | Any Node.js | `geo-ai-core` |
+| CLI (any project) | `geo-ai-cli` |
 
 ---
 
@@ -153,6 +156,10 @@ AES-256-GCM encryption for API keys via `node:crypto`. Format: `base64(IV[12] + 
 npm install geo-ai-core
 # or for Next.js projects:
 npm install geo-ai-next
+# or CLI (any project):
+npm install --save-dev geo-ai-cli
+# or globally:
+npm install -g geo-ai-cli
 ```
 
 ### Basic Usage
@@ -269,6 +276,29 @@ export const { GET } = createLlmsHandler({
 });
 ```
 
+### CLI
+
+Generate and validate `llms.txt` without writing any code:
+
+```bash
+# Scaffold config
+npx geo-ai init
+
+# Generate llms.txt + llms-full.txt into ./public
+npx geo-ai generate
+
+# Validate local files
+npx geo-ai validate
+
+# Validate remote deployment
+npx geo-ai validate --url https://example.com
+
+# Preview config before generating
+npx geo-ai inspect
+```
+
+See [`geo-ai-cli`](https://npmjs.com/package/geo-ai-cli) for full documentation.
+
 ### AI Description Generation
 
 ```typescript
@@ -316,6 +346,7 @@ interface GeoAIConfig {
 |---------|-------------|-------------|
 | `geo-ai-core` | Universal engine | `.` (main), `./ai` (AI generator) |
 | `geo-ai-next` | Next.js: static generation, middleware, route handler | `.` |
+| `geo-ai-cli` | CLI: init, generate, validate, inspect | `geo-ai` binary |
 
 ---
 

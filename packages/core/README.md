@@ -10,12 +10,24 @@ Works with any Node.js framework or plain server. For Next.js, use [`geo-ai-next
 
 Try the analyzer at [geoai.run/analyze](https://www.geoai.run/analyze)
 
+## Ecosystem
+
+| Package | Platform | Description |
+|---------|----------|-------------|
+| [`geo-ai-core`](https://npmjs.com/package/geo-ai-core) | Any Node.js | Zero-dependency engine (this package) |
+| [`geo-ai-next`](https://npmjs.com/package/geo-ai-next) | Next.js >= 16 | Middleware + route handler + static file generation |
+| [`geo-ai-cli`](https://npmjs.com/package/geo-ai-cli) | Any Node.js | CLI — `geo-ai init / generate / validate / inspect` |
+
 ## Installation
 
 ```bash
 npm install geo-ai-core
 # Next.js projects:
 npm install geo-ai-next
+# CLI (any project):
+npm install --save-dev geo-ai-cli
+# or globally:
+npm install -g geo-ai-cli
 ```
 
 ## Quick Start

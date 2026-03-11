@@ -2,6 +2,13 @@
 
 All notable changes to GEO AI Core will be documented in this file.
 
+## [0.2.1] - 2026-03-11
+
+### Docs
+- Added `geo-ai-cli` to ecosystem table and README across all packages
+- Added `description` field to `geo-ai-core` and `geo-ai-next` package.json for npm listing
+- Added `README.md` and `CHANGELOG.md` to `files` in all packages
+
 ## [0.2.0] - 2026-03-10
 
 ### Added
