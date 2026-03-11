@@ -18,6 +18,16 @@ Make any site visible to ChatGPT, Claude, Perplexity, Gemini, Grok & other AI se
 
 ---
 
+## Working on
+
+| Phase | Package | Description |
+|-------|---------|-------------|
+| 7 | geo-ai-nestjs | NestJS module — interceptor + decorator pattern |
+| 8 | geo-ai-laravel | Laravel package — middleware + Artisan commands |
+| 9 | GEO AI Assistant | AI-powered analysis companion that explains GEO findings, recommends fixes, and helps teams improve AI search readiness |
+
+---
+
 ## Phase 1: Core Packages ✅
 
 **geo-ai-core** — Framework-agnostic engine
@@ -211,42 +221,6 @@ geo-ai <command> --help              # per-command help
 - `geo-ai analyze <url>` — AI visibility audit from terminal (same engine as geoai.run/analyze)
 - `geo-ai crawlers <url>` — check which AI bots can access the site
 - Interactive `geo-ai init` wizard with framework detection (Next.js / NestJS / Node.js / Static)
-
----
-
-## Phase 6: GitHub Discovery
-
-**GitHub topics for all repos:**
-
-```
-ai-seo
-llms-txt
-ai-search
-generative-engine-optimization
-geo-ai
-ai-visibility
-ai-crawlers
-```
-
-**Why:**
-- GitHub recommends repos based on topics to users exploring similar projects
-- Topics like `llms-txt` and `generative-engine-optimization` have near-zero competition
-- Users searching these topics find GEO AI as the primary ecosystem
-
-**Apply to:**
-- madeburo/GEO-AI-Woo
-- madeburo/GEO-AI-Shopify
-- madeburo/GEO-AI (core + next monorepo)
-
----
-
-## Future Phases
-
-| Phase | Package | Description |
-|-------|---------|-------------|
-| 7 | geo-ai-nestjs | NestJS module — interceptor + decorator pattern |
-| 8 | geo-ai-laravel | Laravel package — middleware + Artisan commands |
-| 9 | GEO AI Assistant | AI-powered analysis companion that explains GEO findings, recommends fixes, and helps teams improve AI search readiness |
 
 ---
 

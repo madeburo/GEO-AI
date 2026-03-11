@@ -36,10 +36,8 @@ npm install --save-dev geo-ai-cli
 - `DEBUG=geo-ai` env var prints stack traces to stderr
 - No raw stack traces on stdout
 
-**Technical:**
-- Zero runtime dependencies beyond `geo-ai-core`
-- ESM-only build (`dist/cli.mjs`) with `#!/usr/bin/env node` shebang
-- Programmatic API via `dist/i## [0.2.0] - 2026-03-10
+
+## [0.2.0] - 2026-03-10
 
 ### Added
 
