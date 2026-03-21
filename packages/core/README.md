@@ -152,4 +152,4 @@ GPTBot, OAI-SearchBot, ClaudeBot, claude-web, Google-Extended, PerplexityBot, De
 
 ## License
 
-[GPL v2](../../LICENSE)
+[MIT](../../LICENSE)

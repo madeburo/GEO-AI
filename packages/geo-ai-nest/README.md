@@ -304,4 +304,4 @@ The middleware and guard include Express/Fastify fallbacks for request/response 
 
 ## License
 
-GPL-2.0 — see [LICENSE](../../LICENSE).
+MIT — see [LICENSE](../../LICENSE).

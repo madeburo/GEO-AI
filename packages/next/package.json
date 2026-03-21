@@ -2,7 +2,7 @@
   "name": "geo-ai-next",
   "version": "0.2.1",
   "description": "Next.js integration for GEO AI — middleware, route handler and static file generation for llms.txt / llms-full.txt",
-  "license": "GPL-2.0",
+  "license": "MIT",
   "homepage": "https://www.geoai.run",
   "repository": {
     "type": "git",

@@ -24,7 +24,7 @@
     "node.js",
     "typescript"
   ],
-  "license": "GPL-2.0",
+  "license": "MIT",
   "homepage": "https://www.geoai.run",
   "repository": {
     "type": "git",

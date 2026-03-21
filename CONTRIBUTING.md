@@ -136,4 +136,4 @@ See `.kiro/skills/new-wrapper.md` for the full template. The wrapper should:
 
 ## License
 
-By contributing, you agree that your contributions will be licensed under the [GPL v2](LICENSE).
+By contributing, you agree that your contributions will be licensed under the [MIT](LICENSE).

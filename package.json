@@ -1,7 +1,7 @@
 {
   "name": "geo-ai",
   "private": true,
-  "license": "GPL-2.0",
+  "license": "MIT",
   "workspaces": [
     "packages/*"
   ],

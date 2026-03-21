@@ -2,7 +2,7 @@
   "name": "geo-ai-core",
   "version": "0.2.2",
   "description": "Zero-dependency TypeScript engine for AI Search Optimization (GEO) — generates llms.txt, manages AI crawlers, SEO signals, caching and more",
-  "license": "GPL-2.0",
+  "license": "MIT",
   "homepage": "https://www.geoai.run",
   "repository": {
     "type": "git",

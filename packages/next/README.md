@@ -313,4 +313,4 @@ import {
 
 ## License
 
-[GPL v2](../../LICENSE)
+[MIT](../../LICENSE)

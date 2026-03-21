@@ -6,7 +6,7 @@
 
 Universal TypeScript engine for optimizing websites for AI search engines.
 
-[![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/gpl-2.0)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node.js](https://img.shields.io/badge/Node.js-20%2B-339933.svg)](https://nodejs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.5%2B-3178C6.svg)](https://www.typescriptlang.org/)
 
@@ -449,7 +449,7 @@ Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for gui
 
 ## License
 
-GEO AI Core is open-source software licensed under the [GPL v2](LICENSE).
+GEO AI Core is open-source software licensed under the [MIT](LICENSE).
 
 ---
 
