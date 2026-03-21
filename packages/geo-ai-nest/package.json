@@ -1,6 +1,6 @@
 {
   "name": "geo-ai-nest",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "NestJS integration for GEO AI — dynamic module, middleware, controller, guard, interceptor and decorators for llms.txt / AI Search Optimization",
   "keywords": [
     "geo",

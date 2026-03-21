@@ -1,6 +1,6 @@
 {
   "name": "geo-ai-next",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Next.js integration for GEO AI — middleware, route handler and static file generation for llms.txt / llms-full.txt",
   "license": "MIT",
   "homepage": "https://www.geoai.run",
